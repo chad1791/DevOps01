@@ -1,16 +1,5 @@
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
+![workflow](https://github.com/chad1791/DevOps01/actions/workflows/main.yml/badge.svg)
 
+[![LICENSE](https://img.shields.io/github/license/chad1791/DevOps01.svg?style=flat-square)](https://github.com/chad1791/DevOps01/blob/master/LICENSE)
 
-This is a paragraph
-
->QuoteBlock
-> add as much as you want
-
-***THis text is bold***
-
-__Adding extra text__
+[![Releases](https://img.shields.io/github/release/chad1791/DevOps01/all.svg?style=flat-square)](https://github.com/chad1791/DevOps01/releases)
