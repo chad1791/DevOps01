@@ -73,9 +73,14 @@ public class App
     {
         // Create new Application
         App a = new App();
+        Employee e = new Employee();
 
         // Connect to database
         a.connect();
+        // Get Employee
+        Employee emp = e.getEmployee(255530);
+        // Display results
+        e.displayEmployee(emp);
 
         // Disconnect from database
         a.disconnect();
