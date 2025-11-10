@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import java.sql.*;
+
 /**
  * Represents an employee
  */
@@ -44,6 +46,7 @@ public class Employee
     {
         try
         {
+            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
