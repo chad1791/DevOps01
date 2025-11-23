@@ -131,6 +131,30 @@ public class App
         }
     }
 
+    public void deleteEmployee (Employee emp) {
+        if (emp == null) {
+            System.out.println("No employee provided to delete.");
+            return;
+        }
+
+        try {
+            // Use PreparedStatement to avoid SQL injection
+            String sql = "DELETE FROM employees WHERE emp_no = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, emp.emp_no);
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Employee " + emp.emp_no + " deleted successfully.");
+            } else {
+                System.out.println("No employee found with ID " + emp.emp_no);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error deleting employee: " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args)
     {
         // Create new Application
@@ -140,8 +164,12 @@ public class App
         a.connect();
         // Get Employee
         Employee emp = a.getEmployee(255530);
+
         // Display results
         a.displayEmployee(emp);
+
+        // Delete Employee
+        a.deleteEmployee(emp);
 
         // Disconnect from database
         a.disconnect();
