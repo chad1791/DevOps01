@@ -71,18 +71,24 @@ public class App
 
     public static void main(String[] args)
     {
-        // Create new Application
-        App a = new App();
-        Employee e = new Employee();
+        // Connect to MongoDB on local system - we're using port 27000
+//        MongoClient mongoClient = new MongoClient("localhost", 27000);
+        // Get a database - will create when we use it
+        MongoClient mongoClient = new MongoClient("mongo_db");
 
-        // Connect to database
-        a.connect();
-        // Get Employee
-        Employee emp = e.getEmployee(255530);
-        // Display results
-        e.displayEmployee(emp);
+        MongoDatabase database = mongoClient.getDatabase("mydb");
+        // Get a collection from the database
+        MongoCollection<Document> collection = database.getCollection("test");
+        // Create a document to store
+        Document doc = new Document("name", "Kevin Sim")
+                .append("class", "DevOps")
+                .append("year", "2024")
+                .append("result", new Document("CW", 95).append("EX", 85));
+        // Add document to collection
+        collection.insertOne(doc);
 
-        // Disconnect from database
-        a.disconnect();
+        // Check document in collection
+        Document myDoc = collection.find().first();
+        System.out.println(myDoc.toJson());
     }
 }
